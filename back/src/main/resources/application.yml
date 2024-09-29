@@ -9,6 +9,11 @@ spring:
     active: dev
   application:
     name: clone-airbnb
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      poolName: Hikari
+      auto-commit: false
   data:
     jpa:
       repositories:
