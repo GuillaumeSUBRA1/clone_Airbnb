@@ -1,0 +1,28 @@
+@if(loading){
+<div class="flex justify-content-center align-items-center">
+    <fa-icon class="ml-2 text-primary" icon="circle-notch" animation="spin" size="3x"></fa-icon>
+</div>
+} @else {
+<div class="listing-grid">
+    @for(l of listing; track l.pid){
+    <card-listing [listing]="l"></card-listing>
+    }
+</div>
+}
+
+@if (!loading && listing?.length === 0 && !emptySearch) {
+<div class="flex flex-column align-items-center justify-content-center h-10rem">
+    <h1>No listing found for this category</h1>
+    <div class="text-xl">You can come back later</div>
+</div>
+}
+
+@if (!loading && emptySearch) {
+    <div class="flex flex-column align-items-center justify-content-center h-10rem">
+        <h1>No match found for your research</h1>
+        <div class="text-xl">Try with differents parameters</div>
+        <button class="p-button mt-3" (click)="onResetSearch()">
+            Reset all the filters
+        </button>
+    </div>    
+}

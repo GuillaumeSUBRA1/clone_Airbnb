@@ -1,0 +1,9 @@
+<div class="flex align-content-center">
+    @if (logoUrl()!=null) {
+    <img src="{{logoUrl()}}" alt="logo" class="border-round-3xl logo" [ngClass]="logoSize()">
+    }@else {
+    <div class="flex align-items-center justify-content-center unknow-user" [ngClass]="logoSize()">
+        <fa-icon [icon]="'user'" class="text-dark"></fa-icon>
+    </div>
+    }
+</div>

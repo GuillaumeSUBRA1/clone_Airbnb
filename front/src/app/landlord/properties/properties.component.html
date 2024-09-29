@@ -1,0 +1,21 @@
+<h1>My properties</h1>
+<h2>Add new and remove properties</h2>
+
+@if(listing && listing.length>0 || loadingFetch){
+<div class="listing-grid">
+    @for(l of listing; track l.pid){
+    <card-listing [listing]="l" [cardMode]="'landlord'" (deleteEvent)="delete($event)"></card-listing>
+    }
+</div>
+} @else{
+<div class="flex flex-column justify-content-center align-items-center h-10rem">
+    <h1>No property present</h1>
+    <div class="text-xl">It seems that you don't have any property yet</div>
+</div>
+}
+
+@if (loadingFetch) {
+<div class="flex justify-content-center align-items-center h-15rem">
+    <fa-icon [icon]="'circle-notch'" size="3x" animation="spin" class="ml-2 text-primary"></fa-icon>
+</div>
+}

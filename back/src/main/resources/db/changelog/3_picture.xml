@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="2-seq-picture" author="guillaumesubra1">
+        <createSequence sequenceName="picture_id" startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="2-picture" author="guillaumesubra1">
+        <createTable tableName="picture">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="listing" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file" type="${blobType}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_cover" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_content_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="timestamp"/>
+            <column name="last_modified" type="timestamp"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="listing" baseTableName="picture"
+                                 constraintName="fk_listing_id" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="listing"
+                                 validate="true"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

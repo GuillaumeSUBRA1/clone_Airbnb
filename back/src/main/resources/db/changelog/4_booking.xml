@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="3-seq" author="guillaumesubra1">
+        <createSequence sequenceName="booking_id" startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="3-booking" author="guillaumesubra1">
+        <createTable tableName="booking">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="start_date" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="travelers" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pid" type="${uuidType}">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="listing" type="${uuidType}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tenant" type="${uuidType}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="timestamp"/>
+            <column name="last_modified" type="timestamp"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="listing" baseTableName="booking" constraintName="listing_id"
+                                 deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="pid"
+                                 referencedTableName="listing" validate="true"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseColumnNames="tenant" baseTableName="booking" constraintName="tenant_id"
+                                 deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="pid"
+                                 referencedTableName="user_airbnb" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

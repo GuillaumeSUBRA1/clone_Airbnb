@@ -1,0 +1,13 @@
+@if (isHome) {
+<div class="categories pt-3 mx-8">
+    @for(category of categoryList; track category.category){
+    @if(category.category!==categoryList?.at(0)!.category){
+    <div class="flex flex-column align-items-center pb-3 category" (click)="changeCategory(category)"
+        [class.category-activated]="category.active">
+        <fa-icon [icon]="category.icon"></fa-icon>
+        <div title="{{category.name}}" class="name">{{category.name}}</div>
+    </div>
+    }
+    }
+</div>
+}

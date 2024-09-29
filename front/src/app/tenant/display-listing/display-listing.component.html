@@ -1,0 +1,52 @@
+@if(listing && !loading){
+<h1>{{listing.description.title.value}}</h1>
+<div class="gallery">
+    @for (p of listing.pictures; track p.file;let i = $index) {
+    <div class="border-1 border-transparent bg-cover bg-center, bg-no-repeat h-full w-full" [class.cover]="p.isCover"
+        [ngClass]="'gallery-picture-'+(i+1)"
+        [style.background-image]="'url(data:'+p.fileContentType+';base64,'+p.file+')'">
+
+    </div>
+    }
+</div>
+<div class="flex justify-content-between mt-4">
+    <div id="content" class="flex-grow-1 mr-7">
+        <div class="text-xl font-bold">{{listing.location}}</div>
+        <ol>
+            <li>{{listing.infos.guest.value}} guests</li>
+            <li>
+                <fa-icon icon="circle"></fa-icon>
+                <span>{{listing.infos.bedroom.value}} bedrooms</span>
+            </li>
+            <li>
+                <fa-icon icon="circle"></fa-icon>
+                <span>{{listing.infos.bed.value}} beds</span>
+            </li>
+            <li>
+                <fa-icon icon="circle"></fa-icon>
+                <span>{{listing.infos.bath.value}} baths</span>
+            </li>
+        </ol>
+        <div class="border-1 my-4 w-full border-solid border-200"></div>
+        <div class="flex justify-content-start align-content-center">
+            <fa-icon class="ml-2" [icon]="category?.icon!"></fa-icon>
+            <div class="ml-4">This house is of type {{category?.name}}</div>
+
+        </div>
+        <div class="border-1 my-4 w-full border-solid border-200"></div>
+        <div class="landlord flex justify-content-start align-content-center">
+            <logo [logoUrl]="listing.landlord.image" logoSize="logo-xl"></logo>
+            <div class="font-bold ml-3">Hosted by {{listing.landlord.firstname}}</div>
+        </div>
+        <div class="border-1 my-4 w-full border-solid border-200"></div>
+        <div>{{listing.description.description.value}}</div>
+    </div>
+    <book-date [listingPid]="currentPid" [listing]="listing"></book-date>
+</div>
+}
+
+@if (loading) {
+<div class="flex justify-content-center align-content-center">
+    <fa-icon class="ml-2 text-primary" icon="circle-notch" animation="spin" size="3x"></fa-icon>
+</div>
+}

@@ -1,0 +1,14 @@
+<div class="categories flex flex-column align-items-center">
+    <h1>Which of these best describe your place?</h1>
+    <div class="flex flex-wrap align-items-center justify-content-center">
+        @for (c of categories; track c.category) {
+        @if(c.name !=="ALL"){
+        <div class="card-step-1 cursor-pointer p-4 m-2 border-round-lg border-200 hover:border-800 flex-column align-items-start"
+            (click)="selectCategory(c.category)" [class.category-selected]="category() == c.category">
+            <fa-icon class="mb-2" [icon]="c.icon" size="2x"></fa-icon>
+            <div class="font-bold white-space-nowrap">{{c.name}}</div>
+        </div>
+        }
+        }
+    </div>
+</div>

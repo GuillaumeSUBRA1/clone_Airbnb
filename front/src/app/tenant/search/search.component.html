@@ -1,0 +1,31 @@
+<div class="px-4 mb-3">
+    @switch (this.currentStep.id) {
+        @case ("location") {
+            <h1>Where do you want to go?</h1>
+            <location-map
+            [location]="newSearch.location"
+            [placeholder]="'Choose your country'"
+            (locationEvent)="onLocationChange($event)"
+            ></location-map>
+        }
+        @case ("date") {
+            <h1>When do you want to go?</h1>
+            <search-date
+            [dates]="newSearch.dates"
+            (datesChangeEvent)="onDateChange($event)"
+            (stepValidityChangeEvent)="onStepValidated($event)"
+            ></search-date>
+        }
+        @case ("guest") {
+            <h1>What are you looking for?</h1>
+            <h2>Number of beds, guets, ect.</h2>
+            <info-step
+            [infos]="newSearch.infos"
+            (infoEvent)="onInfoChange($event)"
+            (stepValidated)="onStepValidated($event)"
+            ></info-step>
+        }
+    }
+</div>
+<step [currentStep]="currentStep" [allValid]="allStepsValid()" [loading]="loading" 
+(finishEvent)="search()" (nextEvent)="nextStep()" (previousEvent)="previousStep()"></step>

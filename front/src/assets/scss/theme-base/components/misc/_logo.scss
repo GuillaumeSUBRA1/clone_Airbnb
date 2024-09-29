@@ -1,0 +1,30 @@
+.p-logo {
+    background-color: $logoBg;
+    border-radius: $borderRadius;
+
+    &.p-logo-lg {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.5rem;
+
+        .p-logo-icon {
+            font-size: 1.5rem;
+        }
+    }
+
+    &.p-logo-xl {
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
+
+        .p-logo-icon {
+            font-size: 2rem;
+        }
+    }
+}
+
+.p-logo-group {
+    .p-logo {
+        border: 2px solid $panelContentBg;
+    }
+}

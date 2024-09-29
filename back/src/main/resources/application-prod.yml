@@ -1,0 +1,13 @@
+logging:
+  level:
+    ROOT: info
+    org.hibernate.SQL: INFO
+    fr.guillaumesubra1.clone_airbnb: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/airbnb
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  liquibase:
+    contexts: prod

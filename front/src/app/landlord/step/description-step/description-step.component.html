@@ -1,0 +1,21 @@
+<div class="mb-3">
+    <h1 class="mb-1">Now, let's give your house a title and a description</h1>
+    <h2 class="mt-0">Short titles work best. Have fun with it, you can change it at anytime</h2>
+    <form #formDescription="ngForm" novalidate class="w-full">
+        <input #titleInput="ngModel" name="Title" placeholder="title" required class="w-full p-inputtext-lg" type="text"
+            pInputText [(ngModel)]="description().title.value" (ngModelChange)="titleChange($event)">
+        @if(titleInput.dirty && titleInput.invalid){
+        <small id="title-required" class="text-primary">Title is required</small>
+        } @else {
+        <div class="placeholder-validation"></div>
+        }
+        <textarea #descriptionInput="ngModel" name="Description" placeholder="summary" required class="w-full mt-2"
+            rows="5" cols="30" pInputTextArea [ngModel]="description().description.value"
+            (ngModelChange)="descriptionChange($event)"></textarea>
+        @if(descriptionInput.dirty && descriptionInput.invalid){
+        <small id="description" class="text-primary">Description is required</small>
+        } @else {
+        <div class="placeholder-validation"></div>
+        }
+    </form>
+</div>
