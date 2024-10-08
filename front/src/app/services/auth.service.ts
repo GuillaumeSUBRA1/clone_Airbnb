@@ -39,21 +39,11 @@ export class AuthService {
     return false;
   }
 
-  test() {
-    this.http.post(`${environment.API_URL}/landlord/test`, { observe: 'body' }, { responseType: 'text' }).subscribe({
-      next: (value) => {
-        console.log(value);
-      }
-    }
-    );
-  }
-
   login() {
     location.href = `${location.origin}${this.location.prepareExternalUrl("oauth2/authorization/okta")}`;
   }
 
   logout() {
-    console.log(`url logout = ${environment.API_URL}/auth/logout`);
     this.http.post(`${environment.API_URL}/auth/logout`, {}).subscribe(
       {
         next: () => {
